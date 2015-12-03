@@ -34,29 +34,38 @@ export default class User extends React.Component {
                     marginLeft: '7px',
                     marginRight: '7px'
                 }
+            },
+            link: {
+                color: 'inherit'
             }
         };
+
+        var libraryUrl = '/user/' + encodeURIComponent(this.props.user.name) + '/library' + location.pathname;
 
         return (
             <table style={styles.table}>
                 <tbody>
                     <tr>
                         <td rowSpan="2">
-                            <img src={this.props.user.image} style={styles.image}/>
+                            <a href={this.props.user.url}>
+                                <img src={this.props.user.image} style={styles.image} />
+                            </a>
                         </td>
                         <td style={styles.name}>
-                            {this.props.user.name}
+                            <a href={this.props.user.url} style={styles.link}>
+                                {this.props.user.name}
+                            </a>
                         </td>
                     </tr>
                     <tr>
                         <td style={styles.countBar.cell}>
-                            <span>
+                            <a href={libraryUrl}>
                                 <span style={styles.countBar.slug}>
                                     <span style={styles.countBar.value}>
                                         {this.props.user.count}
                                     </span>
                                 </span>
-                            </span>
+                            </a>
                         </td>
                     </tr>
                 </tbody>
