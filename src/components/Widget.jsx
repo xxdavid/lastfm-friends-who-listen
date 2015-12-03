@@ -65,6 +65,11 @@ export default class Widget extends React.Component {
     render() {
         var title = parser.getTitle();
 
+        // put non-breaking space between first two words
+        // because title starting at the end of one line
+        // and ending at the second line looks strange
+        title = title.replace(' ', '\xa0');
+
         return (
             <div className="widget kerve" >
                 <h2 className="widget_title">Friends who listen to <i>{title}</i></h2>
