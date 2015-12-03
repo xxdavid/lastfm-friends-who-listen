@@ -11,8 +11,6 @@ export default class UserList extends React.Component {
         var maxCount = Math.max.apply(Math, data.map(function(user){
             return user.count;
         }));
-
-
         var userNodes = data.map(function (user) {
             return (
                 <User key={user.name} user={user} maxCount={maxCount} />

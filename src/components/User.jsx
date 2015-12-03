@@ -2,7 +2,6 @@ var React = require('react');
 
 export default class User extends React.Component {
     render() {
-
         var styles = {
             table: {
                 marginBottom: '5px'
@@ -48,10 +47,7 @@ export default class User extends React.Component {
                         <td style={styles.name}>
                             {this.props.user.name}
                         </td>
-
-
                     </tr>
-
                     <tr>
                         <td style={styles.countBar.cell}>
                             <span>
