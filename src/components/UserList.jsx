@@ -10,7 +10,7 @@ export default class UserList extends React.Component {
         });
         var userNodes = data.map(function (user) {
             return (
-                <User key={user.key} name={user.name} count={user.count} />
+                <User key={user.name} name={user.name} count={user.count} />
             );
         });
 

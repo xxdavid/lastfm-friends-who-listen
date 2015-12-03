@@ -49,7 +49,6 @@ export default class Widget extends React.Component {
         if (playCount) {
             this.setState({
                 data: this.state.data.concat([{
-                    key: user.username,
                     name: user.username,
                     count: playCount
                 }])
