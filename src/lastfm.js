@@ -40,7 +40,7 @@ export function fetchArtist(artist, user, callback) {
             username: user
         }
     }).success(function (data) {
-        callback(data.artist.stats.userplaycount);
+        callback(parseInt(data.artist.stats.userplaycount));
     });
 }
 
@@ -53,7 +53,7 @@ export function fetchSong(artist, song, user, callback) {
             username: user
         }
     }).success(function (data) {
-        callback(data.track.userplaycount);
+        callback(parseInt(data.track.userplaycount));
     });
 }
 
@@ -66,6 +66,6 @@ export function fetchAlbum(artist, album, user, callback) {
             username: user
         }
     }).success(function (data) {
-        callback(data.album.userplaycount);
+        callback(parseInt(data.album.userplaycount));
     });
 }
