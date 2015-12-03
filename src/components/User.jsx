@@ -59,11 +59,9 @@ export default class User extends React.Component {
                     </tr>
                     <tr>
                         <td style={styles.countBar.cell}>
-                            <a href={libraryUrl}>
-                                <span style={styles.countBar.slug}>
-                                    <span style={styles.countBar.value}>
-                                        {this.props.user.count}
-                                    </span>
+                            <a href={libraryUrl} style={styles.countBar.slug}>
+                                <span style={styles.countBar.value}>
+                                    {this.props.user.count}
                                 </span>
                             </a>
                         </td>
