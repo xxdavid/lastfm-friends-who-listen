@@ -16,12 +16,15 @@ export default class Widget extends React.Component {
 
         // because of this https://github.com/facebook/react/issues/122
         this.data = [];
+
+        this.friendsRemaining = Infinity;
     }
 
     componentDidMount() {
         var username = parser.getUsername();
 
         lastfm.fetchFriends(username, (friends) => {
+            this.friendsRemaining = friends.length;
             for (let friend of friends) {
                 var type = determineType();
                 var artist = parser.getArtist(type);
@@ -60,6 +63,12 @@ export default class Widget extends React.Component {
                 data: this.data
             });
         }
+        this.friendsRemaining--;
+        if (this.friendsRemaining === 0) {
+            this.setState({
+                done: true
+            });
+        }
     }
 
     render() {
@@ -70,11 +79,16 @@ export default class Widget extends React.Component {
         // and ending at the second line looks strange
         title = title.replace(' ', '\xa0');
 
+        var childComponent = <UserList data={this.state.data} />;
+        if (this.state.done && !this.state.data.length) {
+            childComponent = <div>None of your friends listen to this.</div>
+        }
+
         return (
             <div className="widget kerve" >
                 <h2 className="widget_title">Friends who listen to <i>{title}</i></h2>
 
-                <UserList data={this.state.data} />
+                {childComponent}
             </div>
         );
     }
