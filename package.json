@@ -1,0 +1,20 @@
+{
+  "name": "Friends Who Listen",
+  "version": "0.1",
+  "description": "",
+  "main": "index.js",
+  "author": "David Pavlík",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "webpack": "^1.12.9"
+  }
+}
