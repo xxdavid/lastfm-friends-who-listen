@@ -8,9 +8,14 @@ export default class UserList extends React.Component {
         data.sort(function (a, b) {
             return (a.count < b.count) ? 1 : -1;
         });
+        var maxCount = Math.max.apply(Math, data.map(function(user){
+            return user.count;
+        }));
+
+
         var userNodes = data.map(function (user) {
             return (
-                <User key={user.name} name={user.name} count={user.count} />
+                <User key={user.name} user={user} maxCount={maxCount} />
             );
         });
 

@@ -50,6 +50,7 @@ export default class Widget extends React.Component {
             this.setState({
                 data: this.state.data.concat([{
                     name: user.username,
+                    image: user.image,
                     count: playCount
                 }])
             });

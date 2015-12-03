@@ -3,6 +3,8 @@ var $ = require('jquery');
 const API_KEY = '3fe031d61d7cddb809ce4e5d748cfe8f';
 const API_URL = 'http://ws.audioscrobbler.com/2.0/';
 
+const PLACEHOLDER_AVATAR = 'http://img2-ak.lst.fm/i/u/avatar170s/818148bf682d429dc215c1705eb27b98.png';
+
 $.ajaxSetup({
     method: 'GET',
     url: API_URL,
@@ -22,9 +24,12 @@ export function fetchFriends(user, callback) {
     }).success(function (data) {
         var friends = [];
         for (let friend of data.friends.user) {
+            var image = friend.image[1]['#text'];
+            image = image ? image : PLACEHOLDER_AVATAR;
             friends.push({
                 username: friend.name,
-                url: friend.url
+                url: friend.url,
+                image: image
             });
         }
 
