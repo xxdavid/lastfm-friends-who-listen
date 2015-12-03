@@ -1,8 +1,4 @@
 {
-  "name": "Friends Who Listen",
-  "version": "0.1",
-  "description": "",
-  "main": "index.js",
   "author": "David Pavlík",
   "license": "MIT",
   "dependencies": {
