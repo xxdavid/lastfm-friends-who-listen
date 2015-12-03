@@ -40,7 +40,6 @@ export function fetchArtist(artist, user, callback) {
             username: user
         }
     }).success(function (data) {
-        console.log(user, data);
         callback(data.artist.stats.userplaycount);
     });
 }
