@@ -13,6 +13,9 @@ export default class Widget extends React.Component {
         this.state = {
             data: []
         };
+
+        // because of this https://github.com/facebook/react/issues/122
+        this.data = [];
     }
 
     componentDidMount() {
@@ -47,13 +50,14 @@ export default class Widget extends React.Component {
 
     handlePlayCountReceived(user, playCount) {
         if (playCount) {
-            this.setState({
-                data: this.state.data.concat([{
+            this.data.push({
                     name: user.username,
                     image: user.image,
                     url: user.url,
                     count: playCount
-                }])
+                });
+            this.setState({
+                data: this.data
             });
         }
     }
