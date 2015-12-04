@@ -40,6 +40,10 @@ export default class User extends React.Component {
             }
         };
 
+        if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+            styles.countBar.slug.minWidth = '-moz-' + styles.countBar.slug.minWidth;
+        }
+
         var libraryUrl = '/user/' + encodeURIComponent(this.props.user.name) + '/library' + location.pathname;
 
         return (

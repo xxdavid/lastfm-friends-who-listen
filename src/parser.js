@@ -1,10 +1,14 @@
 export function getTitle() {
     var titleEl = document.querySelector('h1.header-title');
     if (titleEl) {
-        var title = titleEl.innerText ;
+        var title = titleEl.textContent;
+
+        title = title.trim();
 
         // remove song duration
         title = title.replace(/ \(\d{1,2}:\d{1,2}\)$/, '');
+
+        title = title.trim();
 
         return title;
     }
@@ -13,7 +17,7 @@ export function getTitle() {
 
 function getCrumb() {
     var crumbEl = document.querySelector('a.header-crumb');
-    return (crumbEl ? crumbEl.innerText : null);
+    return (crumbEl ? crumbEl.textContent.trim() : null);
 }
 
 export function getArtist(type) {
@@ -34,5 +38,5 @@ export function getSong() {
 
 export function getUsername() {
     var element = document.querySelector('a.auth-link');
-    return element.innerText.trim();
+    return element.textContent.trim();
 }
