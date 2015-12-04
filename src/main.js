@@ -1,4 +1,3 @@
-var browser = require('browser-specific');
 var React = require('react');
 var ReactDOM = require('react-dom');
 
