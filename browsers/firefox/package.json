@@ -1,7 +1,7 @@
 {
   "title": "Friends Who Listen",
   "name": "friends-who-listen",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Get the Friends Who Listen widget on Last.fm back",
   "main": "index.js",
   "author": "David Pavlík",
