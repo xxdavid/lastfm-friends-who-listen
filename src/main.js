@@ -4,9 +4,11 @@ var ReactDOM = require('react-dom');
 import Widget from './components/Widget.jsx';
 
 import observeDomChanges from './observeDomChanges';
+import * as language from './language';
 
 function renderWidget() {
-    if (!location.pathname.startsWith('/music')) {
+
+    if (!language.getPathWithoutLanguage().startsWith('/music')) {
         return;
     }
 

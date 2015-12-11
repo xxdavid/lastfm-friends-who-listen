@@ -1,5 +1,7 @@
 var React = require('react');
 
+import * as language from './../language';
+
 export default class User extends React.Component {
     render() {
         var styles = {
@@ -44,19 +46,22 @@ export default class User extends React.Component {
             styles.countBar.slug.minWidth = '-moz-' + styles.countBar.slug.minWidth;
         }
 
-        var libraryUrl = '/user/' + encodeURIComponent(this.props.user.name) + '/library' + location.pathname;
+        var userUrl = language.getLanguagePrefix() + '/user/' + encodeURIComponent(this.props.user.name);
+
+        var libraryUrl = language.getLanguagePrefix() + '/user/' +
+            encodeURIComponent(this.props.user.name) +'/library' + language.getPathWithoutLanguage();
 
         return (
             <table style={styles.table}>
                 <tbody>
                     <tr>
                         <td rowSpan="2">
-                            <a href={this.props.user.url}>
+                            <a href={userUrl}>
                                 <img src={this.props.user.image} style={styles.image} />
                             </a>
                         </td>
                         <td style={styles.name}>
-                            <a href={this.props.user.url} style={styles.link}>
+                            <a href={userUrl} style={styles.link}>
                                 {this.props.user.name}
                             </a>
                         </td>

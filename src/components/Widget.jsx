@@ -56,7 +56,6 @@ export default class Widget extends React.Component {
             this.data.push({
                     name: user.username,
                     image: user.image,
-                    url: user.url,
                     count: playCount
                 });
             this.setState({

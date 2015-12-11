@@ -1,6 +1,8 @@
 var $ = require('jquery');
 var cache = require('lscache');
 
+import { getPathWithoutLanguage } from './language';
+
 const API_KEY = '3fe031d61d7cddb809ce4e5d748cfe8f';
 const API_URL = 'http://ws.audioscrobbler.com/2.0/';
 
@@ -38,7 +40,6 @@ export function fetchFriends(user, callback) {
                     image = image ? image : PLACEHOLDER_AVATAR;
                     friends.push({
                         username: friend.name,
-                        url: friend.url,
                         image: image
                     });
                 }
@@ -88,7 +89,7 @@ export function fetchAlbum(artist, album, user, callback) {
 }
 
 function fetchPlayCount(data, user, callback, parseCount) {
-    var key = location.pathname.replace('/music/', '').replace(/\/\+\w+$/, '') + '.' + user;
+    var key = getPathWithoutLanguage().replace('/music/', '').replace(/\/\+\w+$/, '') + '.' + user;
     if (cache.get(key) !== null) {
         callback(cache.get(key))
     } else {
