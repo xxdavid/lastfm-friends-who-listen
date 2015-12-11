@@ -13,7 +13,7 @@ By *friends* I mean people you follow. I just like the word *friends* more.
 ## Installation
 
 ### Chrome
-Download the latest version from [releases](https://github.com/xxdavid/lastfm-friends-who-listen/releases), open extensions and drag&drop it there.
+You can download the latest version from the [Chrome Web Store](https://goo.gl/w3DxOr).
 
 ### Firefox
-This is pretty similar to Chrome, just drop it anywhere on the window.
+Download the latest version from [releases](https://github.com/xxdavid/lastfm-friends-who-listen/releases) and drag&drop on a Firefox window.
