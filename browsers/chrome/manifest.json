@@ -2,7 +2,7 @@
 	"name": "Friends Who Listen",
 	"description": "Get the Friends Who Listen widget on Last.fm back",
 	"manifest_version": 2,
-  	"version": "0.2",
+  	"version": "0.3",
 	"permissions": [
 		"http://www.last.fm/*"
 	],
