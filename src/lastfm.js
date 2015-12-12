@@ -31,7 +31,8 @@ export function fetchFriends(user, callback) {
             $.ajax({
                 data: {
                     method: 'user.getFriends',
-                    user: user
+                    user: user,
+                    limit: '500'
                 }
             }).success(function (data) {
                 var friends = [];
