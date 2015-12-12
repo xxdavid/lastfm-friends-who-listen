@@ -22,10 +22,14 @@ gulp.task('build', function (callback) {
             .pipe(gulp.dest('build/chrome/'));
         gulp.src('browsers/chrome/**')
             .pipe(gulp.dest('build/chrome/'));
+        gulp.src('images/icon.png')
+            .pipe(gulp.dest('build/chrome/'));
 
         gulp.src('build/core/content.js')
             .pipe(gulp.dest('build/firefox/data/'));
         gulp.src('browsers/firefox/**')
+            .pipe(gulp.dest('build/firefox/'));
+        gulp.src('images/icon.png')
             .pipe(gulp.dest('build/firefox/'));
 
         callback();

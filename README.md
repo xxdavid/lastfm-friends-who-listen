@@ -4,7 +4,7 @@ One thing I really miss, the *Friends who listen to XY* widget.
 
 So I wrote a browser extension for that.
 
-![Screenshot](doc/screenshot.png)
+![Screenshot](images/screenshot.png)
 
 It uses the official Last.fm API so it's quite fast, it usually loads until a second. But to save requests, friends are cached for seven days and the concrete play counts for 24 hours.
 
