@@ -16,4 +16,4 @@ By *friends* I mean people you follow. I just like the word *friends* more.
 You can download the latest version from the [Chrome Web Store](https://goo.gl/w3DxOr).
 
 ### Firefox
-Download the latest version from [releases](https://github.com/xxdavid/lastfm-friends-who-listen/releases) and drag&drop on a Firefox window.
+You can download the latest version from the [Mozilla Add-ons](https://goo.gl/oBTSWs).
