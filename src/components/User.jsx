@@ -3,10 +3,6 @@ var React = require('react');
 import * as language from './../language';
 
 export default class User extends React.Component {
-    shouldComponentUpdate() {
-        return false;
-    }
-
     render() {
         var styles = {
             table: {
