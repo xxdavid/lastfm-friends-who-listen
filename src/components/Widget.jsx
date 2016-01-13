@@ -14,9 +14,6 @@ export default class Widget extends React.Component {
             data: []
         };
 
-        // because of this https://github.com/facebook/react/issues/122
-        this.data = [];
-
         this.friendsRemaining = Infinity;
     }
 
@@ -53,15 +50,18 @@ export default class Widget extends React.Component {
 
     handlePlayCountReceived(user, playCount) {
         if (playCount) {
-            this.data.push({
-                    name: user.username,
-                    image: user.image,
-                    count: playCount
-                });
-            this.setState({
-                data: this.data
+            this.setState((state) => {
+                state.data = state.data.concat([
+                    {
+                        name: user.username,
+                        image: user.image,
+                        count: playCount
+                    }
+                ]);
+                return state;
             });
         }
+
         this.friendsRemaining--;
         if (this.friendsRemaining === 0) {
             this.setState({
