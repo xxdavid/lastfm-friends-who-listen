@@ -1,18 +1,13 @@
 var $ = require('jquery');
-var cache = require('lscache');
 
 import { getPathWithoutLanguage } from './language';
+
+import * as cache from './storage';
 
 const API_KEY = '3fe031d61d7cddb809ce4e5d748cfe8f';
 const API_URL = 'http://ws.audioscrobbler.com/2.0/';
 
 const PLACEHOLDER_AVATAR = 'http://img2-ak.lst.fm/i/u/avatar170s/818148bf682d429dc215c1705eb27b98.png';
-
-// 7 days
-const CACHE_FRIENDS_EXPIRY = 60 * 24 * 7;
-
-// 1 day
-const CACHE_PLAY_COUNT_EXPIRY = 60 * 24;
 
 $.ajaxSetup({
     method: 'GET',
@@ -25,30 +20,32 @@ $.ajaxSetup({
 });
 
 export function fetchFriends(user, callback) {
-        if (cache.get('friends')) {
-            callback(cache.get('friends'));
-        } else {
-            $.ajax({
-                data: {
-                    method: 'user.getFriends',
-                    user: user,
-                    limit: '500'
-                }
-            }).success(function (data) {
-                var friends = [];
-                for (let friend of data.friends.user) {
-                    var image = friend.image[1]['#text'];
-                    image = image ? image : PLACEHOLDER_AVATAR;
-                    friends.push({
-                        username: friend.name,
-                        image: image
-                    });
-                }
+    var value;
+    if (value = cache.getFriends()) {
+        callback(value);
+    } else {
+        $.ajax({
+            data: {
+                method: 'user.getFriends',
+                user: user,
+                limit: '500'
+            }
+        }).success(function (data) {
+            var friends = [];
+            for (let friend of data.friends.user) {
+                var image = friend.image[1]['#text'];
+                image = image ? image : PLACEHOLDER_AVATAR;
+                friends.push({
+                    username: friend.name,
+                    image: image
+                });
+            }
 
-                cache.set('friends', friends, CACHE_FRIENDS_EXPIRY);
-                callback(friends);
-            });
-        }
+            if (cache.shouldCacheFriends())
+                cache.setFriends(friends);
+            callback(friends);
+        });
+    }
 }
 
 export function fetchArtist(artist, user, callback) {
@@ -91,15 +88,17 @@ export function fetchAlbum(artist, album, user, callback) {
 
 function fetchPlayCount(data, user, callback, parseCount) {
     var key = getPathWithoutLanguage().replace('/music/', '').replace(/\/\+\w+$/, '') + '.' + user;
-    if (cache.get(key) !== null) {
-        callback(cache.get(key))
+    var value;
+    if ((value =cache.getScrobbles(key)) !== null) {
+        callback(value)
     } else {
         $.ajax({
             data: data
         }).success(function (responseData) {
             var count = parseInt(parseCount(responseData));
             count = (isNaN(count)) ? 0 : count;
-            cache.set(key, count, CACHE_PLAY_COUNT_EXPIRY);
+            if (cache.shouldCacheScrobbles())
+                cache.setScrobbles(key, count);
             callback(count);
         });
     }

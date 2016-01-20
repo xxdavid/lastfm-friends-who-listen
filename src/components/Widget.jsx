@@ -1,92 +1,47 @@
 var React = require('react');
 
-import UserList from './UserList.jsx';
-import * as parser from './../parser';
-import * as lastfm from './../lastfm';
-import determineType from './../determineType';
+import Content from './Content.jsx'
+import Settings from './Settings.jsx'
 
 export default class Widget extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
-            data: []
+            settings: false
         };
-
-        this.friendsRemaining = Infinity;
     }
 
     componentDidMount() {
-        var username = parser.getUsername();
+    }
 
-        lastfm.fetchFriends(username, (friends) => {
-            this.friendsRemaining = friends.length;
-            for (let friend of friends) {
-                var type = determineType();
-                var artist = parser.getArtist(type);
-                switch (type) {
-                    case 'artist':
-                        lastfm.fetchArtist(artist, friend.username, (playCount) => {
-                            this.handlePlayCountReceived(friend, playCount);
-                        });
-                        break;
-                    case 'song':
-                        var song = parser.getSong();
-                        lastfm.fetchSong(artist, song, friend.username, (playCount) => {
-                            this.handlePlayCountReceived(friend, playCount);
-                        });
-                        break;
-                    case 'album':
-                        var album = parser.getAlbum();
-                        lastfm.fetchAlbum(artist, album, friend.username, (playCount) => {
-                            this.handlePlayCountReceived(friend, playCount);
-                        });
-                        break;
-                }
-            }
+    handleSettingsIconClicked() {
+        this.setState((state) => {
+            state.settings = !state.settings;
+            return state;
         });
     }
 
-    handlePlayCountReceived(user, playCount) {
-        if (playCount) {
-            this.setState((state) => {
-                state.data = state.data.concat([
-                    {
-                        name: user.username,
-                        image: user.image,
-                        count: playCount
-                    }
-                ]);
-                return state;
-            });
-        }
-
-        this.friendsRemaining--;
-        if (this.friendsRemaining === 0) {
-            this.setState({
-                done: true
-            });
-        }
-    }
-
     render() {
-        var title = parser.getTitle();
+        var styles = {
+            settingsIcon: {
+                width: 20,
+                position: 'absolute',
+                top: 0,
+                right: 10,
+                marginTop: 18,
+                cursor: 'pointer'
+            }
+        };
 
-        // put non-breaking space between first two words
-        // because title starting at the end of one line
-        // and ending at the second line looks strange
-        title = title.replace(' ', '\xa0');
-
-        var childComponent = <UserList data={this.state.data} />;
-        if (this.state.done && !this.state.data.length) {
-            childComponent = <div>None of your friends listen to this.</div>
-        }
+        if (this.state.settings)
+            var childComponent = <Settings />;
+        else
+            var childComponent = <Content />;
 
         return (
             <div className="widget kerve" >
-                <h2 className="widget_title">Friends who listen to <i>{title}</i></h2>
-
+                <img src="https://cdn.jsdelivr.net/open-iconic/1.1.0/svg/cog.svg" style={styles.settingsIcon} onClick={this.handleSettingsIconClicked.bind(this)} />
                 {childComponent}
             </div>
         );
