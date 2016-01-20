@@ -92,3 +92,19 @@ export function setDisplayProgressBar(boolean) {
     var value = boolean ? 'yop' : '';
     localStorage.setItem('displayProgressBar', value);
 }
+
+export function getAlternativeTitle() {
+    var value;
+    if ((value = localStorage.getItem('alternativeTitle')) != null) {
+        return Boolean(value);
+    }
+
+    var defaultValue = false;
+    setAlternativeTitle(defaultValue);
+    return defaultValue;
+}
+
+export function setAlternativeTitle(boolean) {
+    var value = boolean ? 'yop' : '';
+    localStorage.setItem('alternativeTitle', value);
+}

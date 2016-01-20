@@ -77,16 +77,24 @@ export default class Settings extends React.Component {
                     </fieldset>
                     <fieldset>
                         <legend>
-                            Loading
+                            General
                         </legend>
                         <div className="form-group">
                             <div className="form-group-controls">
                                 <div className="checkbox">
-                                    <label>Display progress bar
+                                    <label>Display progress bar while loading
                                         <input type="checkbox" defaultChecked={storage.getDisplayProgressBar()}
                                                onClick={(event) => {storage.setDisplayProgressBar(event.target.checked)}} />
                                     </label>
                                 </div>
+                            </div>
+                        </div>
+                        <div className="form-group-controls">
+                            <div className="checkbox">
+                                <label>Use the alternative title version (“K of your friends listen to XY”)
+                                    <input type="checkbox" defaultChecked={storage.getAlternativeTitle()}
+                                           onClick={(event) => {storage.setAlternativeTitle(event.target.checked)}} />
+                                </label>
                             </div>
                         </div>
                     </fieldset>

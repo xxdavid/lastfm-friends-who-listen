@@ -104,9 +104,15 @@ export default class Content extends React.Component {
             }
         };
 
+        if (storage.getAlternativeTitle()) {
+            var title = <h2 className="widget_title" style={styles.title}>{this.state.data.length} of your friends listen to <i>{title}</i></h2>
+        } else {
+            var title = <h2 className="widget_title" style={styles.title}>Friends who listen to <i>{title}</i></h2>
+        }
+
         return (
             <div id="friends-who-listen-content">
-                <h2 className="widget_title" style={styles.title}>Friends who listen to <i>{title}</i></h2>
+                {title}
 
                 {childComponent}
             </div>
