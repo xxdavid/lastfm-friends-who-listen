@@ -1,8 +1,10 @@
 var React = require('react');
 
 import UserList from './UserList.jsx';
+import Nanobar from 'nanobar';
 import * as parser from './../parser';
 import * as lastfm from './../lastfm';
+import * as storage from './../storage'
 import determineType from './../determineType';
 
 export default class Content extends React.Component {
@@ -15,13 +17,22 @@ export default class Content extends React.Component {
         };
 
         this.friendsRemaining = Infinity;
+        this.numberOfFriends = 0;
     }
 
     componentDidMount() {
+        if (storage.getDisplayProgressBar()) {
+            this.progressBar = new Nanobar({
+                target: document.getElementById('friends-who-listen-content'),
+                bg: '#999999'
+            });
+        }
+
         var username = parser.getUsername();
 
         lastfm.fetchFriends(username, (friends) => {
             this.friendsRemaining = friends.length;
+            this.numberOfFriends = friends.length;
             for (let friend of friends) {
                 var type = determineType();
                 var artist = parser.getArtist(type);
@@ -68,6 +79,10 @@ export default class Content extends React.Component {
                 done: true
             });
         }
+
+        if (storage.getDisplayProgressBar()) {
+            this.progressBar.go((this.numberOfFriends - this.friendsRemaining) / this.numberOfFriends * 100);
+        }
     }
 
     render() {
@@ -90,7 +105,7 @@ export default class Content extends React.Component {
         };
 
         return (
-            <div>
+            <div id="friends-who-listen-content">
                 <h2 className="widget_title" style={styles.title}>Friends who listen to <i>{title}</i></h2>
 
                 {childComponent}

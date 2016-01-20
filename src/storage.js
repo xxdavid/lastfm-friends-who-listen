@@ -76,3 +76,19 @@ export function shouldCacheScrobbles() {
 export function flushCache() {
     cache.flush();
 }
+
+export function getDisplayProgressBar() {
+    var value;
+    if ((value = localStorage.getItem('displayProgressBar')) != null) {
+        return Boolean(value);
+    }
+
+    var defaultValue = true;
+    setDisplayProgressBar(defaultValue);
+    return defaultValue;
+}
+
+export function setDisplayProgressBar(boolean) {
+    var value = boolean ? 'yop' : '';
+    localStorage.setItem('displayProgressBar', value);
+}

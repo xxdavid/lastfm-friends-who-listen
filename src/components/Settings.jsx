@@ -43,7 +43,6 @@ export default class Settings extends React.Component {
                 <h2 className="widget_title">Settings</h2>
 
                 <div className="content-form">
-
                     <fieldset>
                         <legend>
                             Cache
@@ -53,7 +52,8 @@ export default class Settings extends React.Component {
                                 Cache friends for
                             </label>
                             <div className="form-group-controls">
-                                <select defaultValue={cache.friends.selected} onChange={(event) => {storage.setFriendsExpiry(event.target.value)}}>
+                                <select defaultValue={cache.friends.selected}
+                                        onChange={(event) => {storage.setFriendsExpiry(event.target.value)}}>
                                     {cache.friends.options}
                                 </select>
                             </div>
@@ -64,7 +64,8 @@ export default class Settings extends React.Component {
                                 Cache scrobbles for
                             </label>
                             <div className="form-group-controls">
-                                <select defaultValue={cache.scrobbles.selected} onChange={(event) => {storage.setScrobblesExpiry(event.target.value)}} >
+                                <select defaultValue={cache.scrobbles.selected}
+                                        onChange={(event) => {storage.setScrobblesExpiry(event.target.value)}} >
                                     {cache.scrobbles.options}
                                 </select>
                             </div>
@@ -72,6 +73,21 @@ export default class Settings extends React.Component {
 
                         <div className="form-group">
                             <button className="btn-secondary" onClick={storage.flushCache}>Flush cache</button>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            Loading
+                        </legend>
+                        <div className="form-group">
+                            <div className="form-group-controls">
+                                <div className="checkbox">
+                                    <label>Display progress bar
+                                        <input type="checkbox" defaultChecked={storage.getDisplayProgressBar()}
+                                               onClick={(event) => {storage.setDisplayProgressBar(event.target.checked)}} />
+                                    </label>
+                                </div>
+                            </div>
                         </div>
                     </fieldset>
                 </div>
