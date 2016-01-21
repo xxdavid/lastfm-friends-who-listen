@@ -114,6 +114,9 @@ export default class Content extends React.Component {
         return (
             <div id="friends-who-listen-content">
                 {heading}
+                <span /> { /* Absolutely don't have any idea why but React doesn't
+                              render the heading without this tag when on page
+                              with artist none of your friends listen to. */ }
 
                 {childComponent}
             </div>
