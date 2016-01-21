@@ -6,7 +6,7 @@ So I wrote a browser extension for that.
 
 ![Screenshot](images/screenshot.png)
 
-It uses the official Last.fm API so it's quite fast, it usually loads until a second. But to save requests, friends are cached for seven days and the concrete play counts for 24 hours.
+It uses the official Last.fm API so it's quite fast (it depends on how many friends you have). But to save requests, caching is enabled by default. You can disable it or choose when the cache should expiry in settings (the cog icon).
 
 By *friends* I mean people you follow. I just like the word *friends* more.
 
