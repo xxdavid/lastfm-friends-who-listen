@@ -1,8 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Widget from './components/Widget.jsx';
-
 import observeDomChanges from './observeDomChanges';
 import * as language from './language';
 

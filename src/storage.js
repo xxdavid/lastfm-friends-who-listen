@@ -1,4 +1,4 @@
-var cache = require('lscache');
+import cache from 'lscache';
 
 export function getFriends() {
     return cache.get('friends')

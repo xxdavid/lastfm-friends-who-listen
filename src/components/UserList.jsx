@@ -1,5 +1,4 @@
-var React = require('react');
-
+import React from 'react';
 import User from './User.jsx';
 import * as storage from './../storage';
 

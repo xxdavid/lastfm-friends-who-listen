@@ -1,7 +1,5 @@
-var $ = require('jquery');
-
+import { default as $ } from 'jquery';
 import { getPathWithoutLanguage } from './language';
-
 import * as cache from './storage';
 
 const API_KEY = '3fe031d61d7cddb809ce4e5d748cfe8f';

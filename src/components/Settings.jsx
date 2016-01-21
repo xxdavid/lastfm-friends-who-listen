@@ -1,5 +1,5 @@
-var React = require('react');
-var storage = require('./../storage');
+import React from 'react';
+import * as storage from './../storage';
 
 export default class Settings extends React.Component {
     mapOptions(options) {

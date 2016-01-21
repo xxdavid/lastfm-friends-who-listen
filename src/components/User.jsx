@@ -1,5 +1,4 @@
-var React = require('react');
-
+import React from 'react';
 import * as language from './../language';
 
 export default class User extends React.Component {

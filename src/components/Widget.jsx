@@ -1,5 +1,4 @@
-var React = require('react');
-
+import React from 'react';
 import Content from './Content.jsx'
 import Settings from './Settings.jsx'
 
