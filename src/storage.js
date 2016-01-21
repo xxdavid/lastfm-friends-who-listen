@@ -36,7 +36,6 @@ export function shouldCacheFriends() {
 }
 
 
-
 export function getScrobbles(key) {
     return cache.get('scrobbles-' + key);
 }
@@ -77,6 +76,7 @@ export function flushCache() {
     cache.flush();
 }
 
+
 export function getDisplayProgressBar() {
     var value;
     if ((value = localStorage.getItem('displayProgressBar')) != null) {
@@ -93,6 +93,7 @@ export function setDisplayProgressBar(boolean) {
     localStorage.setItem('displayProgressBar', value);
 }
 
+
 export function getAlternativeTitle() {
     var value;
     if ((value = localStorage.getItem('alternativeTitle')) != null) {
@@ -107,4 +108,24 @@ export function getAlternativeTitle() {
 export function setAlternativeTitle(boolean) {
     var value = boolean ? 'yop' : '';
     localStorage.setItem('alternativeTitle', value);
+}
+
+
+export function getCollapseNumber() {
+    var value;
+    if ((value = localStorage.getItem('collapseNumber')) != null) {
+        return parseInt(value);
+    }
+
+    var defaultValue = 0;
+    setCollapseNumber(defaultValue);
+    return defaultValue;
+}
+
+export function setCollapseNumber(value) {
+    localStorage.setItem('collapseNumber', value);
+}
+
+export function shouldCollapse() {
+    return Boolean(getCollapseNumber());
 }

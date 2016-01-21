@@ -37,6 +37,19 @@ export default class Settings extends React.Component {
             }
         };
 
+        var collapse = {
+            options: this.mapOptions([
+                {text: "All (don't collapse)", value: 0},
+                {text: "5", value: 5},
+                {text: "10", value: 10},
+                {text: "15", value: 15},
+                {text: "20", value: 20},
+                {text: "30", value: 30},
+                {text: "50", value: 50}
+            ]),
+            selected: storage.getCollapseNumber()
+        };
+
 
         return (
             <div>
@@ -58,7 +71,6 @@ export default class Settings extends React.Component {
                                 </select>
                             </div>
                         </div>
-
                         <div className="form-group">
                             <label className="control-label">
                                 Cache scrobbles for
@@ -70,7 +82,6 @@ export default class Settings extends React.Component {
                                 </select>
                             </div>
                         </div>
-
                         <div className="form-group">
                             <button className="btn-secondary" onClick={storage.flushCache}>Flush cache</button>
                         </div>
@@ -95,6 +106,17 @@ export default class Settings extends React.Component {
                                     <input type="checkbox" defaultChecked={storage.getAlternativeTitle()}
                                            onClick={(event) => {storage.setAlternativeTitle(event.target.checked)}} />
                                 </label>
+                            </div>
+                        </div>
+                        <div className="form-group">
+                            <label className="control-label">
+                                Number of friends to show (and collapse others)
+                            </label>
+                            <div className="form-group-controls">
+                                <select defaultValue={collapse.selected}
+                                        onChange={(event) => {storage.setCollapseNumber(event.target.value)}} >
+                                    {collapse.options}
+                                </select>
                             </div>
                         </div>
                     </fieldset>
