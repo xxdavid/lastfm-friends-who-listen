@@ -138,7 +138,7 @@ export function getWaitUntilFetched() {
     }
 
     var defaultValue = false;
-    setDisplayProgressBar(defaultValue);
+    setWaitUntilFetched(defaultValue);
     return defaultValue;
 }
 
