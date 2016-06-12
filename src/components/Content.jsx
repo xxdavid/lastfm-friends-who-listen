@@ -6,6 +6,7 @@ import * as parser from './../parser';
 import * as lastfm from './../lastfm';
 import * as storage from './../storage'
 import determineType from './../determineType';
+import { each, eachLimit } from 'async'
 
 export default class Content extends React.Component {
 
@@ -18,9 +19,12 @@ export default class Content extends React.Component {
 
         this.friendsRemaining = Infinity;
         this.numberOfFriends = 0;
+        this._isMounted = false;
     }
 
     componentDidMount() {
+        this._isMounted = true;
+
         if (storage.getDisplayProgressBar()) {
             this.progressBar = new Nanobar({
                 target: document.getElementById('friends-who-listen-content'),
@@ -33,30 +37,48 @@ export default class Content extends React.Component {
         lastfm.fetchFriends(username, (friends) => {
             this.friendsRemaining = friends.length;
             this.numberOfFriends = friends.length;
-            for (let friend of friends) {
-                var type = determineType();
-                var artist = parser.getArtist(type);
-                switch (type) {
-                    case 'artist':
-                        lastfm.fetchArtist(artist, friend.username, (playCount) => {
-                            this.handlePlayCountReceived(friend, playCount);
-                        });
-                        break;
-                    case 'song':
-                        var song = parser.getSong();
-                        lastfm.fetchSong(artist, song, friend.username, (playCount) => {
-                            this.handlePlayCountReceived(friend, playCount);
-                        });
-                        break;
-                    case 'album':
-                        var album = parser.getAlbum();
-                        lastfm.fetchAlbum(artist, album, friend.username, (playCount) => {
-                            this.handlePlayCountReceived(friend, playCount);
-                        });
-                        break;
-                }
+            if (storage.getLimitConcurrentRequests()) {
+                eachLimit(friends, 3, this.fetchPlayCountForFriend.bind(this));
+            } else {
+                each(friends, this.fetchPlayCountForFriend.bind(this));
             }
         });
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
+    fetchPlayCountForFriend(friend, callback) {
+        if (!this._isMounted) {
+            console.log('unmounted');
+            return callback('unmounted');
+        }
+        console.log(friend.username);
+        var type = determineType();
+        var artist = parser.getArtist(type);
+        switch (type) {
+            case 'artist':
+                lastfm.fetchArtist(artist, friend.username, (playCount) => {
+                    this.handlePlayCountReceived(friend, playCount);
+                    callback();
+                });
+                break;
+            case 'song':
+                var song = parser.getSong();
+                lastfm.fetchSong(artist, song, friend.username, (playCount) => {
+                    this.handlePlayCountReceived(friend, playCount);
+                    callback();
+                });
+                break;
+            case 'album':
+                var album = parser.getAlbum();
+                lastfm.fetchAlbum(artist, album, friend.username, (playCount) => {
+                    this.handlePlayCountReceived(friend, playCount);
+                    callback();
+                });
+                break;
+        }
     }
 
     handlePlayCountReceived(user, playCount) {

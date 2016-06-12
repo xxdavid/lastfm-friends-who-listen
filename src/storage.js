@@ -146,3 +146,19 @@ export function setWaitUntilFetched(boolean) {
     var value = boolean ? 'yop' : '';
     localStorage.setItem('waitUntilFetched', value);
 }
+
+export function getLimitConcurrentRequests() {
+    var value;
+    if ((value = localStorage.getItem('limitConcurrentRequests')) != null) {
+        return Boolean(value);
+    }
+
+    var defaultValue = true;
+    setLimitConcurrentRequests(defaultValue);
+    return defaultValue;
+}
+
+export function setLimitConcurrentRequests(boolean) {
+    var value = boolean ? 'yop' : '';
+    localStorage.setItem('limitConcurrentRequests', value);
+}

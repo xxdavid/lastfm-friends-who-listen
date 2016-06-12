@@ -134,6 +134,16 @@ export default class Settings extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <div className="form-group">
+                            <div className="form-group-controls">
+                                <div className="checkbox">
+                                    <label>Limit concurrent requests to 3
+                                        <input type="checkbox" defaultChecked={storage.getLimitConcurrentRequests()}
+                                               onClick={(event) => {storage.setLimitConcurrentRequests(event.target.checked)}} />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </fieldset>
                 </div>
 
