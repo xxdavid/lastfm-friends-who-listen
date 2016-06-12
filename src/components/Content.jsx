@@ -51,10 +51,8 @@ export default class Content extends React.Component {
 
     fetchPlayCountForFriend(friend, callback) {
         if (!this._isMounted) {
-            console.log('unmounted');
             return callback('unmounted');
         }
-        console.log(friend.username);
         var type = determineType();
         var artist = parser.getArtist(type);
         switch (type) {
