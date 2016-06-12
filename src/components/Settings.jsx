@@ -14,7 +14,7 @@ export default class Settings extends React.Component {
                 options: this.mapOptions([
                     {text: "Don't cache", value: 0},
                     {text: '1 hour', value: 60},
-                    {text: '5 hour', value: 60 * 5},
+                    {text: '5 hours', value: 60 * 5},
                     {text: '1 day', value: 60 * 24},
                     {text: '3 days', value: 60 * 24 * 3},
                     {text: '1 week', value: 60 * 24 * 7},
