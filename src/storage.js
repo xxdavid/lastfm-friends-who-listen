@@ -129,3 +129,20 @@ export function setCollapseNumber(value) {
 export function shouldCollapse() {
     return Boolean(getCollapseNumber());
 }
+
+
+export function getWaitUntilFetched() {
+    var value;
+    if ((value = localStorage.getItem('waitUntilFetched')) != null) {
+        return Boolean(value);
+    }
+
+    var defaultValue = false;
+    setDisplayProgressBar(defaultValue);
+    return defaultValue;
+}
+
+export function setWaitUntilFetched(boolean) {
+    var value = boolean ? 'yop' : '';
+    localStorage.setItem('waitUntilFetched', value);
+}

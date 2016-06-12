@@ -93,9 +93,15 @@ export default class Content extends React.Component {
         // and ending at the second line looks strange
         title = title.replace(' ', '\xa0');
 
-        var childComponent = <UserList data={this.state.data} />;
-        if (this.state.done && !this.state.data.length) {
-            childComponent = <div>None of your friends listen to this.</div>
+        var childComponent;
+        if (!storage.getWaitUntilFetched() || this.state.done) {
+            if (this.state.done && !this.state.data.length) {
+                childComponent = <div>None of your friends listen to this.</div>
+            } else {
+                childComponent = <UserList data={this.state.data} fetched={this.state.done}/>;
+            }
+        } else {
+            childComponent = <div><i>Loading, please wait...</i></div>;
         }
 
         var styles = {

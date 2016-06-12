@@ -120,6 +120,21 @@ export default class Settings extends React.Component {
                             </div>
                         </div>
                     </fieldset>
+                    <fieldset>
+                        <legend>
+                            Performance
+                        </legend>
+                        <div className="form-group">
+                            <div className="form-group-controls">
+                                <div className="checkbox">
+                                    <label>Wait for rendering until all is fetched
+                                        <input type="checkbox" defaultChecked={storage.getWaitUntilFetched()}
+                                               onClick={(event) => {storage.setWaitUntilFetched(event.target.checked)}} />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
 
             </div>
