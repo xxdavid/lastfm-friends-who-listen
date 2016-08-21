@@ -37,6 +37,6 @@ export function getSong() {
 }
 
 export function getUsername() {
-    var element = document.querySelector('a.auth-link');
-    return element.textContent.trim();
+    var element = document.querySelector('img.auth-avatar-desktop');
+    return element.alt.trim();
 }
