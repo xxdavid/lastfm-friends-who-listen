@@ -23,6 +23,9 @@ export default class Widget extends React.Component {
 
     render() {
         var styles = {
+            widget: {
+                marginBottom: 24,
+            },
             settingsIcon: {
                 width: 20,
                 position: 'absolute',
@@ -39,7 +42,7 @@ export default class Widget extends React.Component {
             var childComponent = <Content />;
 
         return (
-            <div className="widget kerve" >
+            <div className="widget kerve" style={styles.widget}>
                 <img src="https://cdn.jsdelivr.net/open-iconic/1.1.0/svg/cog.svg" style={styles.settingsIcon} onClick={this.handleSettingsIconClicked.bind(this)} />
                 {childComponent}
             </div>
