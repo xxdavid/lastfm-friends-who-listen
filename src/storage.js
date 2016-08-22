@@ -1,4 +1,5 @@
 import cache from 'lscache';
+import lockr from 'lockr';
 
 export function getFriends() {
     return cache.get('friends')
@@ -9,30 +10,18 @@ export function setFriends(value) {
 }
 
 export function getFriendsExpiry() {
-    var value;
-    if ((value = localStorage.getItem('friendsExpiry')) != null) {
-        return parseInt(value);
-    }
-
     var defaultValue = 60 * 24 * 7; //1 week
-    setFriendsExpiry(defaultValue);
-    return defaultValue;
+    return lockr.get('friendsExpiry', defaultValue);
 }
 
 export function setFriendsExpiry(value) {
     flushCache();
 
-    localStorage.setItem('friendsExpiry', value);
-
-    if (value === '0') {
-        localStorage.setItem('shouldCacheFriends', '');
-    } else {
-        localStorage.setItem('shouldCacheFriends', 'yop');
-    }
+    lockr.set('friendsExpiry', parseInt(value));
 }
 
 export function shouldCacheFriends() {
-    return localStorage.getItem('shouldCacheFriends');
+    return (getFriendsExpiry() != 0);
 }
 
 
@@ -45,30 +34,18 @@ export function setScrobbles(key, value) {
 }
 
 export function getScrobblesExpiry() {
-    var value;
-    if ((value = localStorage.getItem('scrobblesExpiry')) != null) {
-        return parseInt(value);
-    }
-
     var defaultValue = 60 * 24; //1 day
-    setScrobblesExpiry(defaultValue);
-    return defaultValue;
+    return lockr.get('scrobblesExpiry', defaultValue);
 }
 
 export function setScrobblesExpiry(value) {
     flushCache();
 
-    if (value === '0') {
-        localStorage.setItem('shouldCacheScrobbles', '');
-    } else {
-        localStorage.setItem('shouldCacheScrobbles', 'yop');
-    }
-
-    localStorage.setItem('scrobblesExpiry', value);
+    lockr.set('scrobblesExpiry', parseInt(value));
 }
 
 export function shouldCacheScrobbles() {
-    return localStorage.getItem('shouldCacheScrobbles');
+    return (getScrobblesExpiry() != 0);
 }
 
 
@@ -78,87 +55,53 @@ export function flushCache() {
 
 
 export function getDisplayProgressBar() {
-    var value;
-    if ((value = localStorage.getItem('displayProgressBar')) != null) {
-        return Boolean(value);
-    }
-
     var defaultValue = true;
-    setDisplayProgressBar(defaultValue);
-    return defaultValue;
+    return lockr.get('displayProgressBar', defaultValue);
 }
 
 export function setDisplayProgressBar(boolean) {
-    var value = boolean ? 'yop' : '';
-    localStorage.setItem('displayProgressBar', value);
+    lockr.set('displayProgressBar', boolean);
 }
 
 
 export function getAlternativeTitle() {
-    var value;
-    if ((value = localStorage.getItem('alternativeTitle')) != null) {
-        return Boolean(value);
-    }
-
     var defaultValue = false;
-    setAlternativeTitle(defaultValue);
-    return defaultValue;
+    return lockr.get('alternativeTitle', defaultValue);
 }
 
 export function setAlternativeTitle(boolean) {
-    var value = boolean ? 'yop' : '';
-    localStorage.setItem('alternativeTitle', value);
+    lockr.set('alternativeTitle', boolean);
 }
 
 
 export function getCollapseNumber() {
-    var value;
-    if ((value = localStorage.getItem('collapseNumber')) != null) {
-        return parseInt(value);
-    }
-
     var defaultValue = 0;
-    setCollapseNumber(defaultValue);
-    return defaultValue;
+    return lockr.get('collapseNumber', defaultValue);
 }
 
 export function setCollapseNumber(value) {
-    localStorage.setItem('collapseNumber', value);
+    lockr.set('collapseNumber', value);
 }
 
 export function shouldCollapse() {
-    return Boolean(getCollapseNumber());
+    return (getCollapseNumber() != 0);
 }
 
 
 export function getWaitUntilFetched() {
-    var value;
-    if ((value = localStorage.getItem('waitUntilFetched')) != null) {
-        return Boolean(value);
-    }
-
     var defaultValue = false;
-    setWaitUntilFetched(defaultValue);
-    return defaultValue;
+    return lockr.get('waitUntilFetched', defaultValue);
 }
 
 export function setWaitUntilFetched(boolean) {
-    var value = boolean ? 'yop' : '';
-    localStorage.setItem('waitUntilFetched', value);
+    lockr.set('waitUntilFetched', boolean);
 }
 
 export function getLimitConcurrentRequests() {
-    var value;
-    if ((value = localStorage.getItem('limitConcurrentRequests')) != null) {
-        return Boolean(value);
-    }
-
     var defaultValue = true;
-    setLimitConcurrentRequests(defaultValue);
-    return defaultValue;
+    return lockr.get('limitConcurrentRequests', defaultValue);
 }
 
 export function setLimitConcurrentRequests(boolean) {
-    var value = boolean ? 'yop' : '';
-    localStorage.setItem('limitConcurrentRequests', value);
+    lockr.set('limitConcurrentRequests', boolean);
 }

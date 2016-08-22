@@ -8,6 +8,7 @@
   "dependencies": {
     "async": "^2.0.0-rc.6",
     "jquery": "^2.1.4",
+    "lockr": "^0.8.4",
     "lscache": "^1.0.5",
     "nanobar": "^0.2.1",
     "react": "^15.1.0",

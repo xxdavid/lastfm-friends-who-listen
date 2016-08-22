@@ -2196,6 +2196,11 @@
       "from": "loader-utils@>=0.2.11 <0.3.0",
       "resolved": "https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.12.tgz"
     },
+    "lockr": {
+      "version": "0.8.4",
+      "from": "lockr@latest",
+      "resolved": "https://registry.npmjs.org/lockr/-/lockr-0.8.4.tgz"
+    },
     "lodash": {
       "version": "3.10.1",
       "from": "lodash@>=3.10.0 <4.0.0",
