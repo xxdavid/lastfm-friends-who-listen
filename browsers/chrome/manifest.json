@@ -9,7 +9,7 @@
 	],
 	"content_scripts": [
 		{
-			"matches": ["http://www.last.fm/*"],
+			"matches": ["http://www.last.fm/*", "https://www.last.fm/*"],
 			"js": ["content.js"],
 			"run_at": "document_idle"
 		}
