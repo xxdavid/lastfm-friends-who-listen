@@ -28,7 +28,7 @@ export function fetchFriends(user, callback) {
                 user: user,
                 limit: '500'
             }
-        }).success(function (data) {
+        }).done(function (data) {
             var friends = [];
             for (let friend of data.friends.user) {
                 var image = friend.image[1]['#text'];
@@ -92,7 +92,7 @@ function fetchPlayCount(data, user, callback, parseCount) {
     } else {
         $.ajax({
             data: data
-        }).success(function (responseData) {
+        }).done(function (responseData) {
             var count = parseInt(parseCount(responseData));
             count = (isNaN(count)) ? 0 : count;
             if (cache.shouldCacheScrobbles())
