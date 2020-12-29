@@ -1,5 +1,6 @@
 export function getTitle() {
-    var titleEl = document.querySelector('h1.header-title');
+    var titleEl = document.querySelector('h1.header-title')
+        || document.querySelector('h1.header-new-title');
     if (titleEl) {
         var title = titleEl.textContent;
 
@@ -12,29 +13,12 @@ export function getTitle() {
 
         return title;
     }
-    else {
-        titleEl = document.querySelector('h1.header-new-title');
-        if (titleEl) {
-            var title = titleEl.textContent;
-
-            title = title.trim();
-
-            // remove song duration
-            title = title.replace(/ \(\d{1,2}:\d{1,2}\)$/, '');
-
-            title = title.trim();
-
-            return title;
-        }
-    }
     return null;
 }
 
 function getCrumb() {
-    var crumbEl = document.querySelector('a.header-crumb');
-    if (!crumbEl){
-        crumbEl = document.querySelector('a.header-new-crumb');
-    }
+    var crumbEl = document.querySelector('a.header-crumb')
+        || document.querySelector('a.header-new-crumb');
     return (crumbEl ? crumbEl.textContent.trim() : null);
 }
 
