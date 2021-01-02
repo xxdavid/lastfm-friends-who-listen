@@ -1,5 +1,6 @@
 export function getTitle() {
-    var titleEl = document.querySelector('h1.header-title');
+    var titleEl = document.querySelector('h1.header-title')
+        || document.querySelector('h1.header-new-title');
     if (titleEl) {
         var title = titleEl.textContent;
 
@@ -16,7 +17,8 @@ export function getTitle() {
 }
 
 function getCrumb() {
-    var crumbEl = document.querySelector('a.header-crumb');
+    var crumbEl = document.querySelector('a.header-crumb')
+        || document.querySelector('a.header-new-crumb');
     return (crumbEl ? crumbEl.textContent.trim() : null);
 }
 

@@ -16,6 +16,11 @@ function renderWidget() {
         sidebarEl.insertBefore(widgetRootEl, sidebarEl.firstChild);
 
         ReactDOM.render(<Widget />, widgetRootEl);
+        var videoOrArtEl = sidebarEl.querySelector('.video-preview')
+            || sidebarEl.querySelector('.album-overview-cover-art');
+        if (videoOrArtEl) {
+            videoOrArtEl.style.marginTop = 0;
+        }
     }
 }
 
