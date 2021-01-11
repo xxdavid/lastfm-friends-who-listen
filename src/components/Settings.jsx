@@ -109,6 +109,16 @@ export default class Settings extends React.Component {
                             </div>
                         </div>
                         <div className="form-group">
+                            <div className="form-group-controls">
+                                <div className="checkbox">
+                                    <label>Show your plays
+                                        <input type="checkbox" defaultChecked={storage.getShowYourPlays()}
+                                               onClick={(event) => {storage.setShowYourPlays(event.target.checked)}} />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form-group">
                             <label className="control-label">
                                 Number of friends to show (and collapse others)
                             </label>

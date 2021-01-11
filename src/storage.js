@@ -73,6 +73,14 @@ export function setAlternativeTitle(boolean) {
     lockr.set('alternativeTitle', boolean);
 }
 
+export function getShowYourPlays() {
+    var defaultValue = false;
+    return lockr.get('showYourPlays', defaultValue);
+}
+
+export function setShowYourPlays(boolean) {
+    lockr.set('showYourPlays', boolean);
+}
 
 export function getCollapseNumber() {
     var defaultValue = 0;
