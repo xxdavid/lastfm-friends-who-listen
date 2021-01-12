@@ -7,7 +7,6 @@ import * as lastfm from './../lastfm';
 import * as storage from './../storage'
 import determineType from './../determineType';
 import { each, eachLimit } from 'async'
-import * as cache from '../storage';
 
 export default class Content extends React.Component {
 
@@ -36,7 +35,7 @@ export default class Content extends React.Component {
         var username = parser.getUsername();
 
         lastfm.fetchFriends(username, (friends) => {
-            if (cache.getShowYourPlays()) {
+            if (storage.getShowYourPlays()) {
                 friends.push({
                     username,
                     image: document.querySelector('.auth-avatar-desktop').src // Pluck the user's avatar from the navigation bar
