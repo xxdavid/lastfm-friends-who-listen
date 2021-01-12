@@ -35,6 +35,13 @@ export default class Content extends React.Component {
         var username = parser.getUsername();
 
         lastfm.fetchFriends(username, (friends) => {
+            if (storage.getShowYourPlays()) {
+                friends.push({
+                    username,
+                    image: document.querySelector('.auth-avatar-desktop').src // Pluck the user's avatar from the navigation bar
+                })
+            }
+
             this.friendsRemaining = friends.length;
             this.numberOfFriends = friends.length;
             if (storage.getLimitConcurrentRequests()) {
