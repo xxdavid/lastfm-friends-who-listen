@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Widget from './components/Widget.jsx';
 import observeDomChanges from './observeDomChanges';
-import * as language from './language';
+import { getBasePath } from './path.js';
 
 function renderWidget() {
 
-    if (!language.getPathWithoutLanguage().startsWith('/music')) {
+    if (!getBasePath().startsWith('/music')) {
         return;
     }
 

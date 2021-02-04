@@ -1,16 +1,7 @@
-import { getLanguagePrefix } from './language';
+import { getBasePath } from './path'
 
 export default function determineType() {
-    var numberOfSlashes = location.pathname.match(/\//g).length;
-
-    var subPageRegex = /.*\/\+\w/;
-    if (location.pathname.search(subPageRegex) !== -1) {
-        numberOfSlashes--;
-    }
-
-    if (getLanguagePrefix()) {
-        numberOfSlashes--;
-    }
+    var numberOfSlashes = getBasePath().match(/\//g).length;
 
     switch (numberOfSlashes) {
         case 2:

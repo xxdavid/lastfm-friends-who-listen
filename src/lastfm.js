@@ -1,5 +1,5 @@
 import { default as $ } from 'jquery';
-import { getPathWithoutLanguage } from './language';
+import { getBasePath } from './path';
 import * as cache from './storage';
 
 const API_KEY = '3fe031d61d7cddb809ce4e5d748cfe8f';
@@ -85,7 +85,7 @@ export function fetchAlbum(artist, album, user, callback) {
 }
 
 function fetchPlayCount(data, user, callback, parseCount) {
-    var key = getPathWithoutLanguage().replace('/music/', '').replace(/\/\+\w+$/, '') + '.' + user;
+    var key = getBasePath() + '.' + user;
     var value;
     if ((value =cache.getScrobbles(key)) !== null) {
         callback(value)

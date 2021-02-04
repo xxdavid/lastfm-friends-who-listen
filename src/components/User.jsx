@@ -1,5 +1,6 @@
 import React from 'react';
-import * as language from './../language';
+import * as path from './../path';
+import * as parser from './../parser';
 
 export default class User extends React.Component {
     render() {
@@ -45,10 +46,10 @@ export default class User extends React.Component {
             styles.countBar.slug.minWidth = '-moz-' + styles.countBar.slug.minWidth;
         }
 
-        var userUrl = language.getLanguagePrefix() + '/user/' + encodeURIComponent(this.props.user.name);
+        var userUrl = path.getLanguagePrefix() + '/user/' + encodeURIComponent(this.props.user.name);
 
-        var libraryUrl = language.getLanguagePrefix() + '/user/' +
-            encodeURIComponent(this.props.user.name) +'/library' + language.getPathWithoutLanguage();
+        var libraryUrl = path.getLanguagePrefix() + '/user/' +
+            encodeURIComponent(this.props.user.name) +'/library' + path.getBasePath();
 
         return (
             <table style={styles.table}>
