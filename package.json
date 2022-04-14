@@ -6,7 +6,7 @@
     "url": "https://github.com/xxdavid/lastfm-friends-who-listen.git"
   },
   "dependencies": {
-    "async": "^2.0.0-rc.6",
+    "async": "^3.2.2",
     "jquery": "^3.3.1",
     "lockr": "^0.8.4",
     "lscache": "^1.0.5",
